@@ -8,6 +8,9 @@ export class AppController {
   @Get()
   @Render('index')
   root() {
-    return { message: 'Hello world!' };
+    return {
+      message: this.appService.message,
+      log: () => console.log('Log...'),
+    };
   }
 }

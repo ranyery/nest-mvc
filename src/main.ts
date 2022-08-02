@@ -3,6 +3,14 @@ import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
 
+// Converter string para function => onclick='{{ stringifyFunc fnName }}'
+import { handlebars } from 'hbs';
+handlebars.registerHelper('stringifyFunc', function (fn) {
+  return new handlebars.SafeString(
+    '(' + fn.toString().replace(/\'/g, '"') + ')()',
+  );
+});
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
 
