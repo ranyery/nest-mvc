@@ -13,4 +13,10 @@ export class AppController {
       log: () => console.log('Log...'),
     };
   }
+
+  @Get('/about')
+  @Render('about')
+  about() {
+    return { message: 'About' };
+  }
 }
